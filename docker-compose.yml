@@ -1,0 +1,13 @@
+﻿services:
+  semeando-mvc:
+    container_name: semeando-mvc-service
+    build:
+      context: ./semeando-mvc  # Caminho do projeto com o Dockerfile
+      dockerfile: Dockerfile  # Nome do arquivo Dockerfile
+    image: semeando-mvc-app:latest  # Nome da imagem para build ou uso
+    ports:
+      - "5000:5000"  # Porta mapeada entre host e container
+    volumes:
+      - ./semeando-mvc/appsettings.json:/App/appsettings.json  # Monta o arquivo de configuração
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
