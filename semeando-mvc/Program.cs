@@ -7,10 +7,11 @@ using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configuração do DbContext e DI
+// Configuração do DbContext e Injeção de Dependência
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseOracle(builder.Configuration.GetConnectionString("Oracle")));
 
+// Registrar repositórios e serviços no contêiner de DI
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 
@@ -25,7 +26,7 @@ builder.Services.AddSession(options =>
 // Adicionar serviços MVC
 builder.Services.AddControllersWithViews();
 
-// Adicionar Swagger Services
+// Configurar o Swagger para documentação da API
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
@@ -35,16 +36,22 @@ builder.Services.AddSwaggerGen(c =>
         Description = "Documentação da API para o projeto Semeando",
         Contact = new OpenApiContact
         {
-            Name = "Semando",
+            Name = "Semeando",
             Email = "plantecomsemeando@gmail.com",
-            Url = new Uri("https://github.com/seu-usuario")
+            Url = new Uri("https://github.com/seu-usuario") // Atualize com o URL correto
         }
     });
 });
 
+// Configurar Kestrel para rodar na porta 5000
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5000); // Configura para escutar na porta 5000
+});
+
 var app = builder.Build();
 
-// Configure o pipeline de middleware
+// Configuração do pipeline de middleware
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
@@ -59,18 +66,21 @@ app.UseRouting();
 // Adicionar suporte à sessão ao pipeline
 app.UseSession();
 
-// Adicionar Swagger Middleware
+// Adicionar suporte ao Swagger
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Semeando API v1");
-    c.RoutePrefix = "swagger"; // A URL para acessar será /swagger
+    c.RoutePrefix = "swagger"; // Acesse a documentação em /swagger
 });
 
+// Configuração de autorização
 app.UseAuthorization();
 
+// Configurar rotas padrão
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// Iniciar a aplicação
 app.Run();

@@ -1,22 +1,16 @@
-﻿# Etapa de build
+﻿# Etapa de Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 
 # Copiar arquivos do projeto
 COPY . ./
-
 # Restaurar dependências
 RUN dotnet restore
-
-# Build do projeto
+# Publicar o aplicativo
 RUN dotnet publish -c Release -o out
 
-# Etapa de runtime
+# Etapa de Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
-
-# Copiar os arquivos gerados na etapa de build
 COPY --from=build-env /App/out .
-
-# Comando de entrada - Substitua "Semeando.Mvc.dll" pelo nome correto
 ENTRYPOINT ["dotnet", "semeando-mvc.dll"]
