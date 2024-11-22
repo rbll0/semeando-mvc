@@ -1,0 +1,85 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container py-4">
+    <!-- Cabeçalho -->
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">Semeando LTDA</h2>
+    </div>
+
+    <!-- Seção de Quiz -->
+    <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold">Quiz</h5>
+            <a href="#" class="text-success">Ver todos</a>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                <img src="./images/globe.png" alt="Quiz 1" class="rounded me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Terra no século XXI</h6>
+                    <small class="text-muted">12 Quizzes</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                <img src="./images/solar-panel.png" alt="Quiz 2" class="rounded me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Consciência energética</h6>
+                    <small class="text-muted">16 Quizzes</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                <img src="./images/co2.png" alt="Quiz 3" class="rounded me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Descarbonizando</h6>
+                    <small class="text-muted">8 Quizzes</small>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Seção de Amigos -->
+    <div>
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold">Amigos</h5>
+            <a href="#" class="text-success">Ver todos</a>
+        </div>
+        <div class="list-group">
+            <a href="#" class="list-group-item d-flex align-items-center">
+                <img src="./images/avatar1.png" alt="Amigo 1" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Claudinha Ecológica</h6>
+                    <small class="text-muted">325 pontos</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item d-flex align-items-center">
+                <img src="./images/avatar2.png" alt="Amigo 2" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Zé do Sustentabilidade</h6>
+                    <small class="text-muted">124 pontos</small>
+                </div>
+            </a>
+            <a href="#" class="list-group-item d-flex align-items-center">
+                <img src="./images/avatar3.png" alt="Amigo 3" class="rounded-circle me-3" style="width: 50px; height: 50px;">
+                <div>
+                    <h6 class="mb-0">Manuela Vegana</h6>
+                    <small class="text-muted">437 pontos</small>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Barra de Navegação Inferior -->
+    <nav class="nav justify-content-between fixed-bottom bg-light py-2 px-4 border-top">
+        <a href="@Url.Action("Index", "Home")" class="nav-link text-success text-center">
+            <i class="bi bi-house-door-fill"></i><br>Início
+        </a>
+        <a href="@Url.Action("Profile", "Usuario")" class="nav-link text-success text-center">
+            <i class="bi bi-person-circle"></i><br>Meu Perfil
+        </a>
+        <a href="#" class="nav-link text-success text-center">
+            <i class="bi bi-code-slash"></i><br>Devs
+        </a>
+    </nav>
+</div>

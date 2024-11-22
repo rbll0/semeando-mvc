@@ -1,0 +1,17 @@
+﻿@model semeando_mvc.Models.ErrorViewModel
+
+@{
+    ViewData["Title"] = "Erro";
+}
+
+<h1 class="text-danger">Erro</h1>
+<p>Ocorreu um erro ao processar sua solicitação.</p>
+<p>
+    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+</p>
+@if (!string.IsNullOrEmpty(Model.RequestId))
+{
+    <p>
+        Por favor, forneça este ID ao entrar em contato com o suporte.
+    </p>
+}

@@ -1,0 +1,23 @@
+@model semeando_mvc.Application.Dtos.UsuarioDto
+
+@{
+    ViewData["Title"] = "Excluir Usuário";
+}
+
+<h2>Excluir Usuário</h2>
+
+<div>
+    <h3>Tem certeza de que deseja excluir este usuário?</h3>
+    <div>
+        <strong>Nome:</strong> @Model.NomeUsuario
+    </div>
+    <div>
+        <strong>Email:</strong> @Model.Email
+    </div>
+
+    <form asp-controller="Admin" asp-action="DeleteConfirmed" method="post">
+        <input type="hidden" name="id" value="@Model.IdUsuario" />
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>

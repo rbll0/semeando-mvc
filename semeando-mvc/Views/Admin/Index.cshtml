@@ -1,0 +1,42 @@
+@model IEnumerable<semeando_mvc.Application.Dtos.UsuarioDto>
+
+<h2>Gerenciar Usuários</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var usuario in Model)
+    {
+        <tr>
+            <td>@usuario.NomeUsuario</td>
+            <td>@usuario.Email</td>
+            <td>
+                <a asp-controller="Admin" asp-action="Edit" asp-route-id="@usuario.IdUsuario" class="btn btn-primary btn-sm">Editar</a>
+                <form asp-controller="Admin" asp-action="Delete" asp-route-id="@usuario.IdUsuario" method="post" style="display:inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
