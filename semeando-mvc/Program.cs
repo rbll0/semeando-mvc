@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.EntityFrameworkCore;
 using semeando_mvc.Application.Services;
 using semeando_mvc.Infrastructure.Data.Context;
@@ -14,6 +15,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 // Registrar repositórios e serviços no contêiner de DI
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+
+// Configuração de proteção de dados com persistência de chaves
+builder.Services.AddDataProtection()
+    .PersistKeysToFileSystem(new DirectoryInfo(@"/App/keys")); // Diretório persistente para chaves
 
 // Adicionar suporte à sessão
 builder.Services.AddSession(options =>

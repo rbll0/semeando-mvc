@@ -9,5 +9,7 @@
       - "5000:5000"  # Porta mapeada entre host e container
     volumes:
       - ./semeando-mvc/appsettings.json:/App/appsettings.json  # Monta o arquivo de configuração
+      - ./keys:/App/keys  # Volume para persistência das chaves de proteção de dados
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5000
